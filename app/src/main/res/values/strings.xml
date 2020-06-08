@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">VirtualAgent</string>
+    <string name="home">Домой</string>
+    <string name="category">Заказы</string>
+    <string name="wishlist">Производитель</string>
+    <string name="account">Настройки</string>
+    <string name="title_home">   </string>
+    <string name="title_categories">   </string>
+    <string name="title_shortlist">    </string>
+    <string name="sum_format"> Настройки  </string>
+    <string name="title_profile">   </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

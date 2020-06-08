@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@drawable/bg_login"
+    android:orientation="vertical"
+    android:padding="15dp"
+    tools:context=".LoginActivity">
+
+    <ImageView
+        android:layout_width="405dp"
+        android:layout_height="94dp"
+        app:srcCompat="@drawable/logo" />
+
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/calibri"
+            android:paddingTop="2dp"
+            android:text="V - AGENT"
+            android:textAlignment="center"
+            android:textColor="#065A80"
+            android:textSize="33sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="130dp"
+            android:layout_height="4dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="2dp"
+            android:background="#fff" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/editTextUsername"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/edittext_bgnd"
+        android:hint="Имя пользователя"
+        android:inputType="text"
+        android:padding="10dp" />
+
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/edittext_bgnd"
+        android:hint="Пароль"
+        android:inputType="textPassword"
+        android:padding="10dp" />
+
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/btn_bgnd"
+        android:text="Логин"
+        android:textColor="@color/colorPrimary"
+        android:textSize="23sp" />
+
+</LinearLayout>
