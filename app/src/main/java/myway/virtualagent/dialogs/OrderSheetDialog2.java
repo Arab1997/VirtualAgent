@@ -1,6 +1,7 @@
 package myway.virtualagent.dialogs;
 
 import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,6 +24,7 @@ import co.ceryle.segmentedbutton.SegmentedButtonGroup;
 import myway.virtualagent.R;
 import myway.virtualagent.adapters.PostAdapter;
 import myway.virtualagent.api.RetrofitClient;
+import myway.virtualagent.models.login.Login;
 import myway.virtualagent.models.order.Post;
 import myway.virtualagent.models.products.Results;
 import myway.virtualagent.utils.Utils;
@@ -31,7 +34,7 @@ import retrofit2.Response;
 
 public class OrderSheetDialog2 extends BottomSheetDialog {
     private List<Post> posts;
-    private List<Results> model;
+    private List<Results> product;
     private PostAdapter postAdapter;
     private RecyclerView recyclerView;
     Results results;
@@ -39,17 +42,18 @@ public class OrderSheetDialog2 extends BottomSheetDialog {
     ProgressBar progressBar;
     private SegmentedButtonGroup type;
     ImageView minus, plus, productImage;
-    private TextView productname, price, qty, productprice, textBack;
+    private TextView productname, price, qty, productprice, textBack, text;
     private Button orderbtn;
     int quantity = 1;
+
 
     public OrderSheetDialog2(@NonNull Context context, @NonNull Results results) {
         super(context, R.style.BottomSheetDialogTheme);
         this.results = results;
         setContentView(R.layout.persistent_bottomsheet);
 
-        populate();
 
+        populate();
     }
 
     @SuppressLint("CutPasteId")
@@ -66,6 +70,7 @@ public class OrderSheetDialog2 extends BottomSheetDialog {
         qty = findViewById(R.id.qty);
         productprice = findViewById(R.id.quantityprice);
         type = findViewById(R.id.type);
+        text = findViewById(R.id.text);
 
         orderbtn = findViewById(R.id.orderbutton);
         textBack = findViewById(R.id.orderback);
@@ -86,18 +91,17 @@ public class OrderSheetDialog2 extends BottomSheetDialog {
                 });
 
         productname.setText(results.getName());
-        price.setText(results.getCost()+ "cум");
+        price.setText(results.getCost() + "cум");
         productprice.setText(results.getCost());
         final Double priceValue = Double.valueOf(results.getCost());
-        //qty.setText("1");
 
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                quantity ++;
+                quantity++;
                 results.setQuantity(quantity);
                 qty.setText(String.valueOf(quantity));
-                productprice.setText(Utils.formatDouble((priceValue *  quantity)) + "cум");
+                productprice.setText(Utils.formatDouble((priceValue * quantity)) + "cум");
 
                 qty.getText().toString();
             }
@@ -106,24 +110,30 @@ public class OrderSheetDialog2 extends BottomSheetDialog {
             @Override
             public void onClick(View view) {
                 if (quantity != 1) {
-                    quantity --;
+                    quantity--;
                     results.setQuantity(quantity);
                     qty.setText(String.valueOf(quantity));
-                    productprice.setText(Utils.formatDouble((priceValue *  quantity)) + "cум");
+                    productprice.setText(Utils.formatDouble((priceValue * quantity)) + "cум");
 
                     qty.getText().toString();
                 }
             }
         });
-/*        SegmentedButtonGroup group = findViewById(R.id.type);*/
         type.setOnClickedButtonListener(new SegmentedButtonGroup.OnClickedButtonListener() {
             @Override
             public void onClickedButton(int position) {
+
                 if (position == 0) {
-                    // Toast.makeText(getContext(), "0", Toast.LENGTH_SHORT).show();
+                    int x = ++position;
+                    Log.d("check", String.valueOf(x));
+
                 } else if (position == 1) {
+                    int x = ++position;
+                    Log.d("check", String.valueOf(x));
 
                 } else if (position == 2) {
+                    int x = ++position;
+                    Log.d("check", String.valueOf(x));
 
                 }
             }
@@ -132,43 +142,32 @@ public class OrderSheetDialog2 extends BottomSheetDialog {
         orderbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createPost();
-              //  populate();
+                 createPost();
             }
         });
         textBack.setOnClickListener(v -> dismiss());
-
     }
+
     private void createPost() {
-        Post post = new Post("",type.getPosition(), qty.getText());
+        int type1 = type.getPosition() + 1;
+        int qty1 = Integer.parseInt(qty.getText().toString());
+        int product = results.getId();
+
+        Post post = new Post(product, type1, qty1);
         Call<Post> call = RetrofitClient.getInstance().getApi()
-                .createPost("","","");
+                .createPost(post);
         call.enqueue(new Callback<Post>() {
             @SuppressLint("WrongViewCast")
             @Override
             public void onResponse(Call<Post> call, Response<Post> response) {
-                if (response.code() == 200) {
-
-                   // Post post = new Post(type.getPosition(), qty.getText().toString());
-                    String content = "";
-                    Log.d("myLogs", String.valueOf(post));
-                    content += "Code: " + response.code() + "\n";
-                    content += "product: " + post.getProduct() + "\n";
-                    content += "type: " + post.getType() + "\n";
-                    content += "quantity: " + post.getQuantity() + "\n";
-                    content += "text:" + post.getBody() + "\n\n";
-                    postAdapter = new PostAdapter(posts, this);
-                    recyclerView.setAdapter(postAdapter);
-                    postAdapter.notifyDataSetChanged();
+                if (response.code() == 201) {
                     // 1. Success message
                     new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
                             .setTitleText("Спасибо за покупкы")
                             .setContentText("ЗАКАЗ ОТПРАВЛЕНЬ")
                             .show();
-
-                    Log.e(getClass().getName(), response.message() + " " + response.body());
                 } else if (response.code() == 400) {
-                    Log.e(getClass().getName(), response.message() + " " + response.body());
+                    Log.d(getClass().getName(), response.message() + " " + response.body());
                     new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
                             .setTitleText("Oops...")
                             .setContentText("ЗАКАЗ НЕ ОТПРАВЛЕНЬ")

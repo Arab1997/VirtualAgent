@@ -8,10 +8,13 @@ import org.ocpsoft.prettytime.PrettyTime;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
+
+import myway.virtualagent.models.products.Results;
 
 public class Utils {
     // Format Double Value To Remove Unnecessary Zero
@@ -38,6 +41,33 @@ public class Utils {
         return !TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
+
+    public static List<Results> searchFollowersFilter(List<Results> list, String charString) {
+        List<Results> filteredTempList = new ArrayList<>();
+        for (Results follower : list) {
+            if (follower != null ) {
+                // Filter by user name and user id
+      /*          if (containsIgnoreCase(follower.getLogin(), charString)
+                        || containsIgnoreCase(String.valueOf(follower.getId()), charString))*/ {
+                    filteredTempList.add(follower);
+                }
+            }
+        }
+        return filteredTempList;
+    }
+
+    public static boolean containsIgnoreCase(String src, String charString) {
+        final int length = charString.length();
+        if (length == 0) {
+            return true;
+        }
+        for (int i = src.length() - length; i >= 0; i--) {
+            if (src.regionMatches(true, i, charString, 0, length)) {
+                return true;
+            }
+        }
+        return false;
+    }
     // Get Error Message
   /*  public static String getErrorMessage(Throwable t, Context context) {
         if (t instanceof SocketTimeoutException || t instanceof UnknownHostException || t instanceof ConnectException) {
@@ -105,5 +135,10 @@ public class Utils {
         Locale locale = Locale.getDefault();
         String country = String.valueOf(locale.getLanguage());
         return country.toLowerCase();
+    }
+
+    public static void LogDebug(String s) {
+
+
     }
 }

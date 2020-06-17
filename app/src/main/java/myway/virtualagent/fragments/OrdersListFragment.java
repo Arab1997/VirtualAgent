@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -22,24 +21,19 @@ import java.util.List;
 import myway.virtualagent.R;
 import myway.virtualagent.adapters.OrderAdapter;
 import myway.virtualagent.api.RetrofitClient;
-import myway.virtualagent.models.order.Orderlist;
+import myway.virtualagent.models.order.OrderList;
 import myway.virtualagent.utils.PaginationScrollListener;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class OrdersListFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
-    private List<Orderlist.Results> results;
+    private List<OrderList.OrderResults> results;
     private RecyclerView recyclerView;
-    private RecyclerView.LayoutManager layoutManager;
     private SwipeRefreshLayout swipeRefreshLayout;
     private OrderAdapter adapter;
-    ImageView navmenu;
-
     private View progressBar;
-    private static String token;
-
-    private static final int OBJECTS_IN_PAGE = 9;
+    private static final int OBJECTS_IN_PAGE = 10;
     private boolean isLoading = false;
     private boolean isLastPage = false;
     private int currentPage = 1;
@@ -89,11 +83,11 @@ public class OrdersListFragment extends Fragment implements SwipeRefreshLayout.O
     }
 
     private void getOrderList() {
-        Call<Orderlist> call = RetrofitClient.getInstance().getApi().getOrder(currentPage);
-        call.enqueue(new Callback<Orderlist>() {
+        Call<OrderList> call = RetrofitClient.getInstance().getApi().getOrder(currentPage);
+        call.enqueue(new Callback<OrderList>() {
 
             @Override
-            public void onResponse(@NonNull Call<Orderlist> call, @NonNull Response<Orderlist> response) {
+            public void onResponse(@NonNull Call<OrderList> call, @NonNull Response<OrderList> response) {
                 isLoading = true;
                 swipeRefreshLayout.setRefreshing(false);
                 progressBar.setVisibility(View.GONE);
@@ -109,7 +103,7 @@ public class OrdersListFragment extends Fragment implements SwipeRefreshLayout.O
                 }
             }
             @Override
-            public void onFailure(@NonNull Call<Orderlist> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<OrderList> call, @NonNull Throwable t) {
 
                 Log.e("MainActivity", "current page: " + currentPage, t);
                 swipeRefreshLayout.setRefreshing(false);

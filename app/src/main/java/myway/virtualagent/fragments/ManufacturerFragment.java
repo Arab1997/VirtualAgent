@@ -19,6 +19,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.google.android.material.tabs.TabLayout;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -26,7 +28,9 @@ import java.util.TimerTask;
 
 import myway.virtualagent.R;
 import myway.virtualagent.adapters.MAdapter;
+import myway.virtualagent.adapters.SliderPagerAdapter;
 import myway.virtualagent.api.RetrofitClient;
+import myway.virtualagent.models.Slide;
 import myway.virtualagent.models.manfacturer.Manufacturer;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,19 +38,15 @@ import retrofit2.Response;
 
 
 public class ManufacturerFragment extends Fragment {
-
-    ViewPager viewPager;
-    LinearLayout sliderDotspanel;
-    private int dotscount;
-    private ImageView[] dots;
-
-    private List<Manufacturer.Results> results;
+    private List<Manufacturer.ManfacturerResults> results;
     private RecyclerView recyclerView;
     private MAdapter adapter;
-    private LinearLayout mLinearLayout;
     private View progressBar;
     private static String token;
-    ImageView navmenu;
+
+    private ViewPager sliderpager;
+    private TabLayout indicator;
+    private List<Slide> lstSlides;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,9 +61,9 @@ public class ManufacturerFragment extends Fragment {
         recyclerView.setNestedScrollingEnabled(false);
         results = new ArrayList<>();
         recyclerView.setAdapter(adapter);
-
-
-
+        progressBar = view.findViewById(R.id.progress_barr);
+        sliderpager = view.findViewById(R.id.slider_pager);
+        indicator = view.findViewById(R.id.indicator);
 
 
         SharedPreferences preferences = getContext().getSharedPreferences("my_shared_preff", Context.MODE_PRIVATE);
@@ -90,43 +90,42 @@ public class ManufacturerFragment extends Fragment {
                 // swipeRefreshLayout.setRefreshing(false);
             }
         });
+        initSlider();
         return view;
     }
-    public class MyTimerTask extends TimerTask {
+
+    private void initSlider() {
+        // prepare a list of slides ..
+        lstSlides = new ArrayList<>();
+        lstSlides.add(new Slide(R.drawable.mobile1, ""));
+        lstSlides.add(new Slide(R.drawable.mobile2, ""));
+        lstSlides.add(new Slide(R.drawable.mobile3, ""));
+        SliderPagerAdapter sliderAdapter = new SliderPagerAdapter(getContext(), lstSlides);
+        sliderpager.setAdapter(sliderAdapter);
+        // setup timer
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new SliderTimer(), 4000, 6000);
+        indicator.setupWithViewPager(sliderpager, true);
+    }
+
+    public class SliderTimer extends TimerTask {
+
         @Override
         public void run() {
-            ManufacturerFragment.this.runOnUiThread(new Runnable() {
+            if(getActivity() == null)
+                return;
+            getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    if(viewPager.getCurrentItem() == 0){
-                        viewPager.setCurrentItem(1);
-                    } else if(viewPager.getCurrentItem() == 1){
-                        viewPager.setCurrentItem(2);
+                    if (sliderpager.getCurrentItem() < lstSlides.size() - 1) {
+                        sliderpager.setCurrentItem(sliderpager.getCurrentItem() + 1);
                     } else {
-                        viewPager.setCurrentItem(0);
+                        sliderpager.setCurrentItem(0);
                     }
                 }
             });
         }
     }
-    private void runOnUiThread(Runnable runnable) {
-    }
 
-
-  /*  // Слайдер
-    private void setupSlider() {
-        sliderView.setDurationScroll(800);
-        List<Fragment> fragments = new ArrayList<>();
-        fragments.add(FragmentSlider.newInstance("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPDcLWa5Yj7zncJtMCE54kRUyTEtdGREunqKwPH6-BoutCc7saAw&s"));
-        fragments.add(FragmentSlider.newInstance("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkJpEeRocLTtxHhWv31IDDKuFw7ErwmbtgipYtXL7QMZI9o18b&s"));
-
-        fragments.add(FragmentSlider.newInstance("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsLvFFazNRFmBL95wbuA9QVENDgB3QHbkOjtfhB0S_yqcPXpsfFg&s"));
-        fragments.add(FragmentSlider.newInstance("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-KI9N24-1a7kuuLzUf-c5HyUM4p4RjBuFCon-PORPRjxWh-0J&s"));
-        mAdapter = new SliderPagerAdapter(getFragmentManager(), fragments);
-        sliderView.setAdapter(mAdapter);
-        mIndicator = new SliderIndicator(getContext(), mLinearLayout, sliderView, R.drawable.indicator_circle);
-        mIndicator.setPageCount(fragments.size());
-        mIndicator.show();
-    }*/
 }
 

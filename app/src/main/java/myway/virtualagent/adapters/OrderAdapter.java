@@ -17,15 +17,15 @@ import java.util.List;
 
 import myway.virtualagent.R;
 import myway.virtualagent.fragments.OrdersListFragment;
-import myway.virtualagent.models.order.Orderlist;
+import myway.virtualagent.models.order.OrderList;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder> {
 
 
-    private List<Orderlist.Results> results;
+    private List<OrderList.OrderResults> results;
     private Context context;
 
-    public OrderAdapter(List<Orderlist.Results> results, OrdersListFragment ordersListFragment) {
+    public OrderAdapter(List<OrderList.OrderResults> results, OrdersListFragment ordersListFragment) {
         this.results = results;
         this.context = context;
     }
@@ -41,7 +41,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(@NonNull OrderAdapter.MyViewHolder holders, int position) {
         final OrderAdapter.MyViewHolder holder = holders;
-        Orderlist.Results result = results.get(position);
+        OrderList.OrderResults result = results.get(position);
         holder.productname.setText(result.getProduct().getName());
         holder.productcost.setText(result.getProduct().getCost());
         holder.manufactname.setText(result.getManufacturer().getName());
@@ -64,7 +64,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
         return results == null ? 0 : results.size();
     }
 
-    public void addItems(List<Orderlist.Results> items) {
+    public void addItems(List<OrderList.OrderResults> items) {
         results.addAll(items);
         notifyDataSetChanged();
     }

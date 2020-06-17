@@ -21,6 +21,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.material.tabs.TabLayout;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -30,9 +32,11 @@ import myway.virtualagent.R;
 import myway.virtualagent.adapters.Adapter;
 import myway.virtualagent.adapters.PostAdapter;
 import myway.virtualagent.adapters.ProductDetailsAdapter;
+import myway.virtualagent.adapters.SliderPagerAdapter;
 import myway.virtualagent.api.RetrofitClient;
 import myway.virtualagent.dialogs.OrderSheetDialog2;
 import myway.virtualagent.dialogs.ProductDetailsSheetDialog;
+import myway.virtualagent.models.Slide;
 import myway.virtualagent.models.order.Post;
 import myway.virtualagent.models.products.Products;
 import myway.virtualagent.models.products.Results;
@@ -44,35 +48,22 @@ import retrofit2.Response;
 
 
 public class HomeFragment extends Fragment {
-    ViewPager viewPager;
-    LinearLayout sliderDotspanel;
-    private int dotscount;
-    private ImageView[] dots;
-    //   private SwipeRefreshLayout swipeRefreshLayout;
-
-
     private List<Results> results;
-    private List<Post> posts;
     private RecyclerView recyclerView;
     private Adapter adapter;
     private ProductDetailsAdapter productDetailsAdapter;
-   // private BottomSheetAdapter bottomsheetadapter;
     private PostAdapter postAdapter;
     private static String token;
     private View progressBar;
-
-    private LinearLayout mLinearLayout;
-    private Button order, orderbtn;
-    private EditText producted;
+    private Button order;
     private TextView back;
-    private TextView typeed;
-    private EditText quantityed;
-    private static final int OBJECTS_IN_PAGE = 10;
+    private static final int OBJECTS_IN_PAGE = 7;
     private boolean isLoading = false;
     private boolean isLastPage = false;
     private int currentPage = 1;
-    private LinearLayout bottom_sheet;
-    private Results productInfo;
+    private ViewPager sliderpager;
+    private TabLayout indicator;
+    private List<Slide> lstSlides;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -90,8 +81,10 @@ public class HomeFragment extends Fragment {
         recyclerView.addOnScrollListener(new PaginationScrollListener(layoutManager) {
             @Override
             protected void loadMoreItems() {
+                isLoading = true;
                 currentPage++;
                 getProduct();
+
             }
             @Override
             public int getTotalPageCount() {
@@ -109,30 +102,44 @@ public class HomeFragment extends Fragment {
         progressBar = view.findViewById(R.id.progress_circular);
         order = (Button) view.findViewById(R.id.order);
         back =  view.findViewById(R.id.back);
+        sliderpager = view.findViewById(R.id.slider_pager);
+        indicator = view.findViewById(R.id.indicator);
 
         getProduct();
 
-
+        initSlider();
         return view;
     }
-    public class MyTimerTask extends TimerTask {
+    private void initSlider() {
+        // prepare a list of slides ..
+        lstSlides = new ArrayList<>();
+        lstSlides.add(new Slide(R.drawable.mobile1, ""));
+        lstSlides.add(new Slide(R.drawable.mobile2, ""));
+        lstSlides.add(new Slide(R.drawable.mobile3, ""));
+        SliderPagerAdapter sliderAdapter = new SliderPagerAdapter(getContext(), lstSlides);
+        sliderpager.setAdapter(sliderAdapter);
+        // setup timer
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new SliderTimer(), 4000, 6000);
+        indicator.setupWithViewPager(sliderpager, true);
+    }
+    public class SliderTimer extends TimerTask {
+
         @Override
         public void run() {
-            HomeFragment.this.runOnUiThread(new Runnable() {
+            if(getActivity() == null)
+                return;
+            getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    if(viewPager.getCurrentItem() == 0){
-                        viewPager.setCurrentItem(1);
-                    } else if(viewPager.getCurrentItem() == 1){
-                        viewPager.setCurrentItem(2);
+                    if (sliderpager.getCurrentItem() < lstSlides.size() - 1) {
+                        sliderpager.setCurrentItem(sliderpager.getCurrentItem() + 1);
                     } else {
-                        viewPager.setCurrentItem(0);
+                        sliderpager.setCurrentItem(0);
                     }
                 }
             });
         }
-    }
-    private void runOnUiThread(Runnable runnable) {
     }
     // Get Product
     private void getProduct() {
@@ -146,7 +153,9 @@ public class HomeFragment extends Fragment {
                 if (response.isSuccessful() && response.body().getResults() != null) {
                     results = response.body().getResults();
                     adapter = new Adapter(getContext(), results);
-                    isLoading = false;
+                   isLoading = false;
+                    isLastPage = false;
+
                     recyclerView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                     adapter.setListener(new OnClickListener() {
@@ -185,6 +194,8 @@ public class HomeFragment extends Fragment {
         //you can set the title for your toolbar here for different fragments different titles
         getActivity().setTitle("");
     }
+
+
 }
 
 

@@ -22,13 +22,13 @@ import myway.virtualagent.models.manfacturer.Manufacturer;
 
 public  class MAdapter extends RecyclerView.Adapter<MAdapter.MyViewHolder> {
     private String ImageUrl;
-    private List<Manufacturer.Results> results;
+    private List<Manufacturer.ManfacturerResults> results;
     private MainActivity profileActivity;
     private Adapter.OnItemClickListener onItemClickListener;
     private Context context;
     private LayoutInflater inflater;
 
-    public MAdapter(List<Manufacturer.Results> results, ManufacturerFragment manufacturerFragment) {
+    public MAdapter(List<Manufacturer.ManfacturerResults> results, ManufacturerFragment manufacturerFragment) {
         this.results = results;
         this.context = context;
     }
@@ -44,7 +44,7 @@ public  class MAdapter extends RecyclerView.Adapter<MAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MAdapter.MyViewHolder holders, int position) {
         final MAdapter.MyViewHolder holder = holders;
-        Manufacturer.Results result = results.get(position);
+        Manufacturer.ManfacturerResults result = results.get(position);
         holder.name.setText(result.getName());
         holder.slug.setText(result.getSlug());
 

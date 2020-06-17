@@ -51,11 +51,37 @@
         </com.google.android.material.appbar.AppBarLayout>
 
 
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/slider_pager"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@+id/bar"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/indicator"
+            android:layout_width="match_parent"
+            android:layout_height="21dp"
+            android:layout_alignBottom="@+id/slider_pager"
+            android:layout_marginBottom="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/slider_pager"
+            app:layout_constraintTop_toBottomOf="@+id/recycler"
+            app:tabBackground="@drawable/indicator_selector"
+            app:tabGravity="center"
+            app:tabIndicatorHeight="0dp">
+
+        </com.google.android.material.tabs.TabLayout>
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerv"
-            android:layout_marginTop="60dp"
+            android:layout_below="@+id/indicator"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />

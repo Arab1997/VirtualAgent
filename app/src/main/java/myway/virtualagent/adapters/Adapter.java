@@ -78,10 +78,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
         return results == null ? 0 : results.size();
     }
 
-
       public Results getItem(int item) {
       return results.get(item);
     }
+
+
 
     public interface ListItemClickListener {
         void onItemClick(Results results);

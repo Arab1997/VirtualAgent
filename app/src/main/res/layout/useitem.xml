@@ -4,17 +4,15 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
   >
-
-
     <LinearLayout
         android:layout_width="409dp"
-        android:layout_height="159dp"
+        android:layout_height="149dp"
         android:orientation="vertical"
        >
 
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
-            android:layout_height="159dp"
+            android:layout_height="144dp"
             app:cardCornerRadius="2dp"
             app:cardElevation="2dp"
             app:cardUseCompatPadding="true"
@@ -22,7 +20,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="159dp"
+                android:layout_height="144dp"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -38,7 +36,7 @@
 
                         <ImageView
                             android:id="@+id/images"
-                            android:layout_width="88dp"
+                            android:layout_width="match_parent"
                             android:layout_height="72dp" />
 
                     </LinearLayout>
@@ -47,7 +45,7 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
+                        android:layout_marginTop="3dp"
                         android:layout_weight="72"
                         android:orientation="vertical">
 
@@ -60,18 +58,9 @@
                             android:fontFamily="@font/calibri"
                             android:text="Huawei Nexus 6p"
                             android:textColor="#000000"
-                            android:textSize="20sp"
+                            android:textSize="17sp"
                             android:textStyle="bold" />
 
-                        <TextView
-                            android:id="@+id/manfactname"
-                            android:layout_width="match_parent"
-                            android:layout_height="35dp"
-                            android:layout_marginBottom="2dp"
-                            android:fontFamily="@font/calibri"
-                            android:text="3 GB RAM | 5.7 inch "
-                            android:textColor="#757575"
-                            android:textSize="17sp" />
 
                     </LinearLayout>
 
@@ -90,11 +79,13 @@
                     android:weightSum="100">
 
                     <LinearLayout
-                        android:layout_width="62dp"
+
+                        android:layout_width="53dp"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="2dp"
                         android:layout_weight="50"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:weightSum="1">
 
                         <TextView
                             android:layout_width="82dp"
@@ -108,7 +99,7 @@
 
                         <TextView
                             android:id="@+id/cost1"
-                            android:layout_width="127dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/calibri"
                             android:gravity="center"
@@ -120,18 +111,38 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:layout_width="95dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/manfactname"
+                            android:layout_width="73dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginTop="19dp"
+                            android:fontFamily="@font/calibri"
+                            android:gravity="center"
+                            android:text="MUSA "
+                            android:textColor="#757575"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="67dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="4dp"
+
                         android:layout_weight="50">
 
                         <Button
                             android:id="@+id/order"
+                            android:layout_marginRight="42dp"
                             android:layout_width="111dp"
                             android:layout_height="34dp"
                             android:layout_below="@+id/images"
                             android:layout_gravity="center"
-                            android:layout_marginStart="60dp"
+                            android:layout_marginStart="20dp"
                             android:layout_marginTop="4dp"
                             android:layout_marginBottom="2dp"
                             android:background="@drawable/bottom_shadow"

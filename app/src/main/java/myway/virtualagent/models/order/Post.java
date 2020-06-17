@@ -1,6 +1,12 @@
 package myway.virtualagent.models.order;
 
+import android.widget.TextView;
+
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
+
+import myway.virtualagent.models.products.Results;
 
 /*{
         "product": null,
@@ -9,34 +15,29 @@ import com.google.gson.annotations.SerializedName;
         }*/
 public class Post {
     @SerializedName("product")
-    private String product;
+    private int product;
 
     @SerializedName("type")
     private int type;
 
     @SerializedName("quantity")
-    private CharSequence quantity;
+    private int quantity;
 
     @SerializedName("body")
     private String body;
 
-    public Post(String product, int type, CharSequence quantity) {
+    public Post(int product, int type, int quantity) {
         this.product = product;
         this.type = type;
         this.body = body;
         this.quantity = quantity;
-
     }
 
-
-
-
-
-    public String getProduct() {
+    public int getProduct() {
         return product;
     }
 
-    public void setProduct(String product) {
+    public void setProduct(int product) {
         this.product = product;
     }
 
@@ -48,11 +49,11 @@ public class Post {
         this.type = type;
     }
 
-    public CharSequence getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(CharSequence quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 

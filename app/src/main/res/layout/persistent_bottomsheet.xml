@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottomsheet"
     android:layout_width="match_parent"
-    android:layout_height="370dp"
+    android:layout_height="340dp"
+    android:layout_alignParentBottom="true"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    app:behavior_hideable="false"
+    app:cardCornerRadius="16dp">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="340dp"
     android:layout_alignParentBottom="true"
     android:background="#FFFDFD"
     android:orientation="vertical"
@@ -27,7 +37,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginStart="-4dp"
+                android:layout_marginStart="6dp"
                 android:layout_marginLeft="-4dp"
                 android:layout_marginTop="2dp"
                 android:gravity="center"
@@ -35,7 +45,7 @@
                 android:padding="2dp"
                 android:text="Заказать"
                 android:textColor="@android:color/black"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -48,7 +58,7 @@
                 android:padding="5dp"
                 android:text="Отменить"
                 android:textColor="#3E84CF"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
         </RelativeLayout>
@@ -75,8 +85,8 @@
                     android:id="@+id/orderimage"
                     android:layout_width="57dp"
                     android:layout_height="66dp"
-                    android:layout_marginLeft="13dp"
-                    android:layout_marginRight="12dp" />
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="4dp" />
 
                 <ProgressBar
                     android:id="@+id/progressbar"
@@ -94,16 +104,14 @@
 
                 <TextView
                     android:id="@+id/productname"
-                    android:layout_width="274dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="4dp"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:text="name"
                     android:textColor="#000"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
 
@@ -113,15 +121,13 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/manname"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="8dp"
                     android:layout_marginTop="2dp"
-                    android:layout_marginRight="4dp"
                     android:layout_marginBottom="9dp"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:text="Цена:"
                     android:textColor="#000"
-                    android:textSize="19sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/productprice"
@@ -132,7 +138,7 @@
                     android:layout_marginStart="2dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="2dp"
-                    android:layout_marginEnd="91dp"
+                    android:layout_marginEnd="1dp"
                     android:layout_marginRight="4dp"
                     android:layout_marginBottom="10dp"
                     android:layout_toEndOf="@+id/cost"
@@ -142,7 +148,7 @@
                     android:textColor="#000"
                     android:textSize="16sp" />
 
-                <TextView
+            <!--    <TextView
                     android:id="@+id/costtt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -155,7 +161,7 @@
                     android:singleLine="true"
                     android:text=""
                     android:textColor="#000"
-                    android:textSize="16sp" />
+                    android:textSize="16sp" />-->
             </RelativeLayout>
 
         </LinearLayout>
@@ -186,12 +192,12 @@
                 android:singleLine="true"
                 android:text="Коллечество"
                 android:textColor="#000"
-                android:textSize="22sp" />
+                android:textSize="18sp" />
 
 
             <LinearLayout
                 android:id="@+id/qtyLay"
-                android:layout_width="148dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/itemLay"
                 android:layout_margin="@dimen/defaultMargin"
@@ -211,11 +217,11 @@
                 <TextView
                     android:id="@+id/qty"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/defaultMargin"
                     android:layout_marginRight="@dimen/defaultMargin"
                     android:text="1"
-                    android:textColor="@color/black"
+                    android:textColor="@color/grey_900"
                     android:textSize="21sp" />
 
                 <ImageView
@@ -255,21 +261,20 @@
                 android:singleLine="true"
                 android:text="Сумма"
                 android:textColor="#000"
-                android:textSize="22sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/quantityprice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="21dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="3dp"
                 android:layout_marginRight="8dp"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:text=""
                 android:textColor="#000"
-                android:textSize="22sp"
-                android:textStyle="bold" />
+                android:textSize="22sp" />
 
         </LinearLayout>
 
@@ -287,10 +292,10 @@
             android:layout_gravity="center"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="4dp"
             android:text="Тип оплаты"
             android:textColor="#000"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <co.ceryle.segmentedbutton.SegmentedButtonGroup
             android:id="@+id/type"
@@ -298,25 +303,25 @@
             android:layout_height="30dp"
             android:layout_alignParentStart="true"
             android:layout_gravity="center"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginLeft="14dp"
             android:layout_marginTop="4dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/btn_bgnd"
             app:sb_textTypeface="serif"
-            app:sbg_animateSelectorDuration="500"
-            app:sbg_backgroundColor="@color/grey_500"
-            app:sbg_borderColor="@color/black"
-            app:sbg_dividerBackgroundDrawable="@drawable/blue_button_background"
+            app:sbg_animateSelectorDuration="200"
+            app:sbg_borderColor="@color/white"
+            app:sbg_dividerBackgroundDrawable="@drawable/btn_bgnd"
             app:sbg_dividerColor="@color/light_blue_800"
             app:sbg_dividerPadding="2dp"
             app:sbg_dividerRadius="15dp"
             app:sbg_dividerSize="1dp"
             app:sbg_position="0"
-            app:sbg_radius="15dp"
+            app:sbg_radius="12dp"
             app:sbg_ripple="true"
-            app:sbg_rippleColor="@color/black"
-            app:sbg_selectorColor="@color/white">
+            app:sbg_rippleColor="@color/white"
+            app:sbg_selectorColor="@color/light_blue_800">
 
 
             <co.ceryle.segmentedbutton.SegmentedButton
@@ -329,8 +334,9 @@
                 android:textAllCaps="false"
                 app:sb_text="реал"
                 app:sb_textColor="@color/black"
-                app:sb_textColor_onSelection="@color/black"
-                app:sb_textSize="18sp" />
+                app:sb_textColor_onSelection="@color/white"
+                app:sb_textSize="18sp"
+                app:sbg_position="0" />
 
 
             <co.ceryle.segmentedbutton.SegmentedButton
@@ -342,12 +348,13 @@
                 android:textAllCaps="false"
                 app:sb_text="перич"
                 app:sb_textColor="@color/black"
-                app:sb_textColor_onSelection="@color/black"
-                app:sb_textSize="18sp" />
+                app:sb_textColor_onSelection="@color/white"
+                app:sb_textSize="18sp"
+                app:sbg_position="1" />
 
 
             <co.ceryle.segmentedbutton.SegmentedButton
-                android:layout_width="86dp"
+                android:layout_width="80dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:minHeight="10dp"
@@ -356,8 +363,9 @@
                 android:textAllCaps="false"
                 app:sb_text="нал"
                 app:sb_textColor="@color/black"
-                app:sb_textColor_onSelection="@color/black"
-                app:sb_textSize="18sp" />
+                app:sb_textColor_onSelection="@color/white"
+                app:sb_textSize="18sp"
+                app:sbg_position="2" />
 
         </co.ceryle.segmentedbutton.SegmentedButtonGroup>
 
@@ -365,7 +373,7 @@
         <Button
             android:id="@+id/orderbutton"
             android:layout_width="match_parent"
-            android:layout_height="44dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="68dp"
             android:layout_marginTop="8dp"
             android:layout_marginRight="68dp"
@@ -380,3 +388,4 @@
 
 
 </LinearLayout>
+</androidx.cardview.widget.CardView>

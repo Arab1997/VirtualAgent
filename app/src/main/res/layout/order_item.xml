@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
-        android:layout_height="163dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginBottom="2dp"
-        app:cardCornerRadius="6dp"
-        app:cardElevation="@dimen/cardview_default_elevation">
+<androidx.cardview.widget.CardView
+    android:layout_width="wrap_content"
+    android:layout_height="163dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginLeft="4dp"
+    android:layout_marginTop="6dp"
+    android:layout_marginRight="4dp"
+    android:layout_marginBottom="2dp"
+    app:cardCornerRadius="6dp"
+    app:cardElevation="@dimen/cardview_default_elevation"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -25,7 +21,7 @@
                 android:id="@+id/proname"
                 android:layout_width="289dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="0dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginLeft="0dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="16dp"
@@ -40,13 +36,13 @@
 
             <TextView
                 android:id="@+id/nnnnn"
-                android:layout_width="69dp"
+                android:layout_width="131dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_marginStart="3dp"
+                android:layout_marginStart="-24dp"
                 android:layout_marginLeft="39dp"
                 android:layout_marginTop="6dp"
-                android:layout_marginEnd="0dp"
+                android:layout_marginEnd="2dp"
                 android:layout_marginRight="132dp"
                 android:layout_toEndOf="@+id/proname"
                 android:background="@drawable/btn_bgnd"
@@ -77,11 +73,13 @@
                 android:textSize="18sp" />
 
             <TextView
+                android:layout_marginStart="7dp"
                 android:id="@+id/manufactnam1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginStart="2dp"
+
                 android:layout_marginLeft="39dp"
                 android:layout_marginRight="132dp"
                 android:layout_marginBottom="99dp"
@@ -96,7 +94,8 @@
                 android:layout_width="119dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/proname"
-                android:layout_marginStart="0dp"
+                android:layout_alignStart="@+id/productcost1"
+
                 android:layout_marginLeft="0dp"
                 android:layout_marginTop="104dp"
                 android:layout_marginBottom="10dp"
@@ -135,6 +134,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/proname"
+                android:layout_alignStart="@+id/manufactnam1"
+
                 android:layout_marginLeft="0dp"
                 android:layout_marginTop="33dp"
                 android:layout_marginBottom="10dp"
@@ -173,13 +174,13 @@
                 android:id="@+id/storeaddress11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
+                android:layout_alignStart="@+id/storename11"
 
+                android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginStart="2dp"
+
                 android:layout_marginTop="88dp"
-                android:layout_marginRight="289dp"
+                android:layout_marginRight="281dp"
                 android:layout_marginBottom="22dp"
                 android:drawablePadding="10dp"
                 android:ellipsize="end"
@@ -192,17 +193,17 @@
 
             <TextView
                 android:id="@+id/productcost"
-                android:layout_width="110dp"
-                android:layout_height="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/manfactname"
-                android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginLeft="0dp"
+                android:layout_marginStart="11dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="-51dp"
-                android:layout_marginEnd="214dp"
                 android:layout_marginRight="214dp"
                 android:layout_marginBottom="35dp"
+                android:layout_toEndOf="@+id/productcost1"
                 android:layout_toRightOf="@+id/images"
                 android:drawablePadding="10dp"
                 android:ellipsize="end"
@@ -218,11 +219,11 @@
                 android:layout_width="51dp"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/storeaddress11"
-                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
                 android:layout_alignParentRight="true"
+                android:layout_marginStart="7dp"
                 android:layout_marginLeft="0dp"
                 android:layout_marginTop="24dp"
-                android:layout_marginEnd="325dp"
                 android:layout_marginRight="325dp"
                 android:layout_marginBottom="5dp"
                 android:layout_toRightOf="@+id/images"
@@ -243,9 +244,9 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="0dp"
-                android:layout_marginLeft="0dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="4dp"
-                android:layout_marginEnd="-4dp"
+                android:layout_marginEnd="14dp"
                 android:layout_marginRight="-4dp"
                 android:layout_marginBottom="13dp"
                 android:layout_toEndOf="@+id/images"
@@ -263,7 +264,7 @@
 
     </androidx.cardview.widget.CardView>
 
-</FrameLayout>
+
 
 
 

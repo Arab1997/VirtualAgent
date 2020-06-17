@@ -20,20 +20,14 @@ import myway.virtualagent.fragments.ManufacturerFragment;
 import myway.virtualagent.fragments.OrdersListFragment;
 import myway.virtualagent.fragments.ProfileFragment;
 
-public class MainActivity extends AppCompatActivity
-        implements
-        SwipeRefreshLayout.OnRefreshListener{
-    TextView textMessage;
+public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener{
     BottomNavigationView bottomNavigationView;
     Fragment selectFragment = null;
-    ImageView navmenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);

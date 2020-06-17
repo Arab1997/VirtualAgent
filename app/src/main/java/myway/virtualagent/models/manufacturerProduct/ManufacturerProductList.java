@@ -5,20 +5,20 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public  class Manufactproductlist {
+public  class ManufacturerProductList {
 
     @Expose
     @SerializedName("results")
-    private List<Results> results;
+    private List<ManufacturerProductList> results;
     @Expose
     @SerializedName("count")
     private int count;
 
-    public List<Results> getResults() {
+    public List<ManufacturerProductList> getResults() {
         return results;
     }
 
-    public void setResults(List<Results> results) {
+    public void setResults(List<ManufacturerProductList> results) {
         this.results = results;
     }
 

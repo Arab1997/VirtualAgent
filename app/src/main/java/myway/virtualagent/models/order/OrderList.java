@@ -5,11 +5,11 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public  class Orderlist {
+public  class OrderList {
 
     @Expose
     @SerializedName("results")
-    private List<Results> results;
+    private List<OrderResults> results;
     @Expose
     @SerializedName("next")
     private String next;
@@ -17,11 +17,11 @@ public  class Orderlist {
     @SerializedName("count")
     private int count;
 
-    public List<Results> getResults() {
+    public List<OrderResults> getResults() {
         return results;
     }
 
-    public void setResults(List<Results> results) {
+    public void setResults(List<OrderResults> results) {
         this.results = results;
     }
 
@@ -41,7 +41,7 @@ public  class Orderlist {
         this.count = count;
     }
 
-    public  class Results {
+    public  class OrderResults {
         @Expose
         @SerializedName("created_time")
         private String created_time;

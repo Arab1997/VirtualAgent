@@ -11,7 +11,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.squareup.picasso.Picasso;
 
 import myway.virtualagent.R;
-import myway.virtualagent.models.order.Orderlist;
+import myway.virtualagent.models.order.OrderList;
 import myway.virtualagent.models.products.Results;
 
 public class ProductDetailsSheetDialog extends BottomSheetDialog {
@@ -19,7 +19,7 @@ public class ProductDetailsSheetDialog extends BottomSheetDialog {
     private Context context;
     private LayoutInflater inflater;
     private Results results;
-    private Orderlist orderlist;
+    private OrderList orderlist;
     private Results productInfo;
 
     public ProductDetailsSheetDialog(@NonNull Context context, @NonNull Results results){
@@ -44,13 +44,14 @@ public class ProductDetailsSheetDialog extends BottomSheetDialog {
 
         Picasso.get()
                 .load(results.getImages().getPhotos().get(0).getImage())
-                .placeholder(R.drawable.ic_plus)
+              //  .placeholder(R.drawable.ic_plus)
                 .into(tvProductImage);
 
         tvProductName.setText(results.getName());
         tvProductCost.setText(results.getCost() + "cум" + "");
         tvProductCategory.setText(results.getCategory().getName());
         tvProductManufactName.setText(results.getManufacturer().getName());
+        tvProductQuantity.setText(results.getQuantity());
 
 
         textBack.setOnClickListener(v -> dismiss());

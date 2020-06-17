@@ -3,7 +3,7 @@ package myway.virtualagent.models.products;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public  class Results {
+public class Results {
     @Expose
     @SerializedName("slug")
     private String slug;

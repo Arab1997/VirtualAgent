@@ -30,7 +30,6 @@ public  class Products {
         this.count = count;
     }
 
-
     public static class Manufacturer {
         @Expose
         @SerializedName("slug")

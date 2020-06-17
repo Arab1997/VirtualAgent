@@ -8,17 +8,17 @@ import java.util.List;
 public  class Manufacturer {
     @Expose
     @SerializedName("results")
-    private List<Results> results;
+    private List<ManfacturerResults> results;
     @Expose
     @SerializedName("count")
     private int count;
 
 
-    public List<Results> getResults() {
+    public List<ManfacturerResults> getResults() {
         return results;
     }
 
-    public void setResults(List<Results> results) {
+    public void setResults(List<ManfacturerResults> results) {
         this.results = results;
     }
 
@@ -31,7 +31,7 @@ public  class Manufacturer {
         this.count = count;
     }
 
-    public static class Results {
+    public static class ManfacturerResults {
         @Expose
         @SerializedName("slug")
         private String slug;

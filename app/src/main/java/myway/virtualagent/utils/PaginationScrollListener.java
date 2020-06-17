@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
  * Copyright (c) 2016. Suleiman Ali Shakir. All rights reserved.
  */
 public abstract class PaginationScrollListener extends RecyclerView.OnScrollListener {
-
+    public static final int PAGE_START = 1;
     private LinearLayoutManager layoutManager;
-
+    private static final int PAGE_SIZE = 7;
     /**
      * Supporting only LinearLayoutManager for now.
      *
@@ -30,8 +30,7 @@ public abstract class PaginationScrollListener extends RecyclerView.OnScrollList
         int totalItemCount = layoutManager.getItemCount();
         int firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition();
 
-        if (!isLoading() && !isLastPage()) {
-
+      /*  if (!isLoading() && !isLastPage()) {
             if ((visibleItemCount + firstVisibleItemPosition) >= totalItemCount
                     && firstVisibleItemPosition >= 0
                     && totalItemCount >= getTotalPageCount()) {
@@ -39,7 +38,20 @@ public abstract class PaginationScrollListener extends RecyclerView.OnScrollList
             }
         }
 
+    }*/
+
+
+      if (!isLoading() && !isLastPage()) {
+        if ((visibleItemCount + firstVisibleItemPosition) >= totalItemCount
+                && firstVisibleItemPosition >= 0
+                && totalItemCount >= PAGE_SIZE) {
+            loadMoreItems();
+        }
     }
+    }
+
+
+
 
     protected abstract void loadMoreItems();
 

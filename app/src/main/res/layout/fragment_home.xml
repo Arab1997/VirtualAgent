@@ -15,45 +15,100 @@
             android:id="@+id/bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark">
+            android:background="@color/colorPrimaryDark"
+            app:theme="@style/AppThemeSearch">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:popupTheme="@style/AppTheme.PopupOverlay"
-                app:theme="@style/AppTheme.Toolbar">
-
+                android:layout_marginRight="20dp"
+                android:layout_height="wrap_content">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <EditText
+                 <!--   <androidx.appcompat.widget.SearchView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="20dp"
+                        android:layout_height="40dp"
+                        android:background="@color/white"
+                        android:layout_marginEnd="0dp"
+                        android:iconifiedByDefault="false">
+
+                    </androidx.appcompat.widget.SearchView>-->
+                   <!-- <androidx.appcompat.widget.SearchView
+                        android:layout_width="match_parent"
+                        android:layout_height="47dp"
+                        android:background="@color/colorPrimaryDark"
+                        android:layout_marginEnd="0dp"
+                        android:iconifiedByDefault="false">
+
+                    </androidx.appcompat.widget.SearchView>-->
+
+                    <androidx.appcompat.widget.SearchView
+                        android:id="@+id/simpleSearchView"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:textColor="@color/sort_bar_background"
                         android:background="@drawable/white_rounded_shape"
-                        android:drawablePadding="2dp"
-                        android:hint="Поиск товары ?"
-                        android:padding="8dp"
-                        android:textColor="@android:color/black"
-                        android:textColorHint="#aeaeae"
-                        android:textSize="18sp" />
+                        android:iconifiedByDefault="false"
+                        android:queryHint="Поиск продукты" />
+
                 </LinearLayout>
 
-            </androidx.appcompat.widget.Toolbar>
 
+
+
+            </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
 
+
+   <!--     <androidx.appcompat.widget.SearchView
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:background="@color/colorPrimaryDark"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="674dp"
+            android:iconifiedByDefault="false">
+
+        </androidx.appcompat.widget.SearchView>-->
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/slider_pager"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@+id/bar"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/indicator"
+            android:layout_width="match_parent"
+            android:layout_height="21dp"
+            android:layout_alignBottom="@+id/slider_pager"
+            android:layout_marginBottom="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/slider_pager"
+            app:layout_constraintTop_toBottomOf="@+id/recycler"
+            app:tabBackground="@drawable/indicator_selector"
+            app:tabGravity="center"
+            app:tabIndicatorHeight="0dp">
+
+        </com.google.android.material.tabs.TabLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="56dp"
-            android:focusable="false"
-            android:clickable="false"/>
+            android:layout_below="@+id/indicator"
+            android:clickable="false"
+            android:focusable="false" />
 
         <ProgressBar
             android:id="@+id/progress_circular"

@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 
 android {
-    compileSdkVersion 29
+        compileSdkVersion 29
     buildToolsVersion "29.0.3"
 
     defaultConfig {
@@ -95,10 +95,7 @@ dependencies {
     implementation 'com.airbnb.android:lottie:2.5.1'
 
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
-    //add this library
-    implementation 'de.hdodenhof:circleimageview:2.2.0'
-    implementation 'com.github.bumptech.glide:glide:4.9.0'
-    implementation 'com.theartofdev.edmodo:android-image-cropper:2.7.+'
+
     implementation 'com.rengwuxian.materialedittext:library:2.1.4'
     implementation 'com.github.bumptech.glide:glide:3.7.0'
 
@@ -119,6 +116,6 @@ dependencies {
         releaseCompile 'com.readystatesoftware.chuck:library-no-op:1.1.0'*/
     }
 
-
-
+    //implementation 'com.github.freshdesk:freshchat-android:1.5.2'
+    implementation 'com.github.freshdesk:freshchat-android:2.6.1'
 }
