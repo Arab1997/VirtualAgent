@@ -82,6 +82,7 @@ public class HomeFragment extends Fragment {
             @Override
             protected void loadMoreItems() {
                 isLoading = true;
+                isLastPage= false;
                 currentPage++;
                 getProduct();
 
@@ -153,7 +154,7 @@ public class HomeFragment extends Fragment {
                 if (response.isSuccessful() && response.body().getResults() != null) {
                     results = response.body().getResults();
                     adapter = new Adapter(getContext(), results);
-                   isLoading = false;
+                    isLoading = false;
                     isLastPage = false;
 
                     recyclerView.setAdapter(adapter);
